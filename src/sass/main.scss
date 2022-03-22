@@ -1,2 +1,64 @@
-
 @import './example';
+
+.photo-card {
+  text-decoration: none;
+  list-style: none;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: 30px;
+}
+
+.img {
+  max-width: 350px;
+  height: 350px;
+  object-fit: cover;
+  display: block;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: rgb(190, 190, 190);
+}
+
+.stats-item {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.material-icons {
+  padding-right: 7px;
+  color: rgb(226, 229, 190);
+}
+
+.hover {
+  color: aqua;
+}
+
+.search-form {
+  padding-top: 30px;
+  //   width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.gallery {
+  padding-left: 0px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.input {
+  width: 40%;
+}

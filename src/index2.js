@@ -1,5 +1,6 @@
 import './sass/main.scss';
 import imageCard from './templates/imageCard.hbs';
+import IpiServis from './js/apiService.js';
 
 // import API from `./js/apiService`;
 
@@ -19,34 +20,43 @@ const refs = {
   btn: document.querySelector(`.button`),
 };
 
+const apiServis = new IpiServis();
+
 class GetImage {
   constructor({}) {
-    this.pageNum = 1;
-    this.search = ``;
-  }
-
-  fetchImage(e) {
-    return fetch(
-      `https://pixabay.com/api/?image_type=photo&orientation=horizontal&q=${e}&page=${this.pageNum}&per_page=12&key=26121578-e837ffea047e9540b4143728d`,
-    ).then(response => response.json());
+    // this.pageNum = 1;
+    // this.search = ``;
   }
 
   onClick() {
-    this.pageNum += 1;
-    this.fetchImage(this.search).then(this.render).catch();
+    apiServis.fetchImage().then(this.render).catch();
   }
 
   onSearch(e) {
     e.preventDefault();
 
-    this.search = e.currentTarget.elements.query.value;
-    this.onClick();
-    this.fetchImage(search).then(this.render).catch();
+    apiServis.qery = e.currentTarget.elements.query.value;
+    // if (apiServis.qery === '') {
+    //   return alert(`Введите запрос`);
+    // }
+    apiServis.resetPage();
+    apiServis
+      .fetchImage()
+      .then(hits => {
+        refs.gallery.innerHTML = '';
+        k;
+        this.render(hits);
+      })
+      .catch();
   }
 
-  render(e) {
-    const marcup = imageCard(e);
-    refs.gallery.insertAdjacentHTML(`beforeend`, marcup);
+  render(hits) {
+    console.log(hits);
+
+    const marcup = imageCard(hits);
+    // console.log('🚀 ~ file: index2.js ~ line 47 ~ GetImage ~ render ~ marcup', marcup);
+
+    refs.gallery.insertAdjacentHTML(`beforeend`, imageCard(hits));
   }
 }
 
